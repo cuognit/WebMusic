@@ -35,10 +35,6 @@ app.use(
         secret: process.env.SECRET_KEY, // key dùng để mã hóa session cookie
         resave: false, // không lưu session nếu không thay đổi
         saveUninitialized: false, // không tạo session nếu chưa login
-        store: new MongoDBStore({
-            url: process.env.MONGODB_URI,
-            colection: 'sessions',
-        }),
         cookie: { maxAge: 1000 * 60 * 60 * 24, httpOnly: true }, // thời gian sống của cookie (ms)
     }),
 );
