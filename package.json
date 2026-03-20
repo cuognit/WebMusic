@@ -4,7 +4,8 @@
   "description": "web music",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently  \"nodemon --inspect src/index.js\"",
+    "start": "node src/index.js",
+    "dev": "concurrently  \"nodemon --inspect src/index.js\"",
     "watch": "sass --no-source-map --watch src/resources/scss:src/public/css",
     "beauty": "prettier --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,css,scss,html}'",
     "test": "echo \"Error: no test specified\" && exit 1"
