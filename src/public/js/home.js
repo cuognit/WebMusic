@@ -380,10 +380,7 @@
                     })
                     .then((data) => {
                         // sessionStorage.setItem('message', JSON.stringify({message: data.message}));
-                        sessionStorage.setItem('hasRunWatched', 'true');
-                        location.reload();
-                       
-                        
+                        sessionStorage.setItem('hasRunWatched', 'true');                
                     })
                     .catch((error) => {
                         console.error('Fetch error:', error);
