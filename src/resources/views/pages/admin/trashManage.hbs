@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="/css/admin.css"> 
+<script src="/js/settings.js" defer></script>
+    <!-- Nội dung chính (Main Content) -->
+    <main id="content" class="main-content">
+        <!-- === TRACKS MANAGEMENT VIEW === -->
+        <section id="tracksView" style="display: block;">
+            <header style="margin-bottom: 2rem;" class="flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold">Quản lý Thùng rác</h1>
+                <a href="/admin/songManage" class="btn btn-primary">
+                    <i class="fa-solid fa-list" style="position: relative;right:2px"></i>
+                    Quản lý Bài hát
+                </a>
+            </header>
+
+            <!-- Thao tác hàng loạt & Tìm kiếm -->
+            <div class="p-6 rounded-xl shadow-lg mb-6 flex justify-between items-center" style="background-color: white;">
+                <div class="flex items-center space-x-4">
+                    <button id="bulkDeleteBtn" class="btn btn-delete-bulk disabled">
+                        <i class="fa-solid fa-trash-can" style="position: relative;right:4px"></i>
+                        Xóa Hàng Loạt
+                    </button>
+                    <button id="bulkRestoreBtn" class="btn btn-restore-bulk disabled">
+                        <i class="fa-solid fa-undo" style="position: relative;right:4px"></i>
+                        Khôi Phục Hàng Loạt
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="search-container">
+                        <input type="text" id="searchTrack" placeholder="Tìm kiếm bài hát...">
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; top: 55%; right: 10px; transform: translateY(-50%);"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng danh sách bài hát -->
+            <div class="table-container">
+                <table>
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="checkAll" style="border-radius: 0.25rem; color: var(--color-primary);">
+                            </th>
+                            <!-- Cột Sắp xếp -->
+                            <th>
+                                Ảnh
+                            </th>
+                            <th data-sort-by="title">
+                                Tên Bài Hát
+                                <span id="sort-title" class="sort-icon opacity-50"><i data-lucide="arrow-down-up"></i></span>
+                            </th>
+                            <th data-sort-by="artist">
+                                Ca Sĩ
+                                <span id="sort-artist" class="sort-icon opacity-50"><i data-lucide="arrow-down-up"></i></span>
+                            </th>
+                            <th>
+                                Năm phát hành - Thể loại 
+                            </th>
+                            <th style="text-align: center;">
+                                Thao tác
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackList">                   
+                        {{#each songs}}
+                            <tr data-id="{{this._id}}">
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem;">
+                                    <input type="checkbox" data-id="{{this._id}}" class="track-checkbox" style="border-radius: 0.25rem; color: var(--color-primary);">
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem;">
+                                    <img src="{{this.image}}" onerror="this.onerror=null;this.src='https://placehold.co/50x50/374151/ffffff?text=IMG';" style="height: 2.5rem; width: 2.5rem; border-radius: 0.5rem; object-fit: cover;" alt="Ảnh bìa">
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; font-weight: 500; color: #111827;">
+                                    {{this.title}}
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; color: #4b5563;">
+                                    {{this.artist}}
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; color: #4b5563;">
+                                    {{this.year}} - {{this.genre}}
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; text-align: center;">
+                                    <div class="action-btns">
+                                        <button data-id="{{this._id}}" class="detail-btn" title="Chi tiết">
+                                            <i class="fa-solid fa-ellipsis-vertical" style="font-size: larger;"></i>
+                                        </button>
+                                        <button data-id="{{this._id}}" class="restore-btn" id="restoreBtn" title="Khôi phục">
+                                            <i class="fa-solid fa-undo" style="font-size: larger;"></i>
+                                        </button>
+                                        <button data-id="{{this._id}}" class="delete-btn" id="destroyBtn" title="Xóa vĩnh viễn">
+                                            <i class="fa-regular fa-trash-can" style="font-size: larger;"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                         {{/each}}                     
+                    </tbody>
+                </table>
+                         
+            </div>
+            {{#if (eq songs.length 0 )}}
+                    <div style="display:flex;margin-top:20px;color:#555a61;justify-content: center;align-items: center;">
+                        Empty!...
+                    </div>        
+                    {{/if}}
+        </section>
+    </main>
+    
+    <!-- Modal xác nhận khôi phục -->
+    <div id="restoreModal" class="modal-overlay hidden-modal">
+        <div class="modal-content" id="restoreContent">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Xác nhận khôi phục</h3>
+            <p id="restoreMessage" style="margin-bottom: 1.5rem; color: #4b5563;">Bạn có chắc chắn muốn khôi phục mục này?</p>
+            <div class="confirm-actions">
+                <button id="cancelRestoreBtn" class="btn-secondary">
+                    Hủy
+                </button>
+                <button id="executeRestoreBtn" class="btn-primary">
+                    Xác nhận Khôi phục
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận xóa -->
+    <div id="confirmModal" class="modal-overlay hidden-modal">
+        <div class="modal-content" id="confirmContent">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Xác nhận xóa</h3>
+            <p id="confirmMessage" style="margin-bottom: 1.5rem; color: #4b5563;">Bạn có chắc chắn muốn xóa mục này?</p>
+            <div class="confirm-actions">
+                <button id="cancelDeleteBtn" class="btn-secondary">
+                    Hủy
+                </button>
+                <button id="executeDestroyBtn" class="btn-danger">
+                    Xác nhận Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Chi tiết Bài Hát -->
+    <div id="detailModal" class="modal-overlay hidden-modal">
+        <div class="modal-content" id="detailContent">
+            <h2 id="detailTitle" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--color-primary);">Chi Tiết Bài Hát</h2>
+            <button id="closeDetailModalBtn" class="modal-close-btn">
+                <i class="fa-solid fa-x" style="width: 1.5rem; height: 1.5rem;"></i>
+            </button>
+            <div id="trackDetailsContainer" style="max-height: 70vh; overflow-y: auto; padding-right: 0.5rem;">
+                
+            </div>
+            <div style="padding: 1rem; border-top: 1px solid #e5e7eb; display: flex; justify-content: flex-end;align-items: center;">
+                
+                
+            </div>
+            
+        </div>
+    </div>
+    <div id="g-toast-box-container"></div>
+<script>const songs = {{{json songs}}}; </script>
+
+

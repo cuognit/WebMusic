@@ -1,0 +1,29 @@
+ <link rel="stylesheet" href="/css/admin.css">
+       <!-- Thanh Menu Bên Trái (Sidebar) -->
+    <aside id="sidebar" class="sidebar shadow-lg">
+        <div class="text-2xl font-bold flex items-center" style="margin-bottom: 2rem;">
+            <i data-lucide="headphones" style="margin-right: 0.5rem; color: #a5b4fc;"></i>
+            Admin Âm Nhạc
+        </div>
+        <nav style="flex-grow: 1;">
+            <a href="/admin/dashboard" class="dashboard-link {{#if (eq activeMenu "dashboard")}}active{{/if}}    ">
+                <i class="fa-solid fa-chart-line" style="position: relative;top: 1px;"></i>
+                Dashboard
+            </a>
+            <a href="/admin/songManage" class="songManage-link {{#if (eq activeMenu "songManage")}}active{{/if}}">
+                <i class="fa-solid fa-music" style="position: relative;top: 2px;"></i>
+                Quản lý Bài hát
+            </a>
+            <a href="/admin/artistManage" class="artistManage-link {{#if (eq activeMenu "artistManage")}}active{{/if}}">
+                <i class="fa-solid fa-user-tie" style="position: relative;top: 1px;"></i>
+                Quản lý Người dùng
+            </a>
+            <a href="/admin/settings" class="settings-link {{#if (eq activeMenu "settings")}}active{{/if}}">
+               <i class="fa-solid fa-gears" style="position: relative;top: 1px;"></i>
+                Cài đặt
+            </a>
+        </nav>
+        <div style="padding-top: 1rem; border-top: 1px solid #374151; font-size: 0.875rem;">
+            <p style="color: #9ca3af; font-style: italic;">Dữ liệu lưu trữ cục bộ</p>
+        </div>
+    </aside>

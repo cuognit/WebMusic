@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="/css/admin.css"> 
+
+     <div id="main-container">
+               <!-- ===== Sidebar ===== -->
+        <!-- SỬA: Đã xóa hết class Tailwind, chỉ giữ ID và class tùy chỉnh -->
+        <nav id="sidebar" class="sidebar-expanded">
+
+            <div class="sidebar-nav-list">
+                <!-- Trang chủ -->
+                <a href="/" class="nav-item " title="Trang chủ">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="nav-text">Trang chủ</span>
+                </a>
+
+                <!-- Thư viện -->
+                <a href="/user/library" class="nav-item" title="Thư viện">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m16 6 4 14"/>
+                        <path d="M12 6v14"/>
+                        <path d="M8 8v12"/>
+                        <path d="M4 4v16"/>
+                    </svg>
+                    <span class="nav-text">Thư viện</span>
+                </a>
+
+                <!-- Thêm DS Phát -->
+                <a href="#" class="nav-item" title="Thêm danh sách phát">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span class="nav-text">Thêm danh sách phát</span>
+                </a>
+
+                <hr>
+
+                <!-- Yêu thích -->
+                <a href="/user/favorites" class="nav-item" title="Yêu thích">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="nav-text">Yêu thích</span>
+                </a>
+
+                <!-- Đã nghe -->
+                <a href="/user/history" class="nav-item active" title="Đã nghe">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12A9 9 0 1 0 12 3v9"></path>
+                        <path d="M12 8v4l4 2"></path>
+                    </svg>
+                    <span class="nav-text">Đã nghe</span>
+                </a>
+            </div>
+        </nav>
+        <!-- ===== Kết thúc Sidebar ===== -->
+    <!-- Nội dung chính (Main Content) -->
+    <main id="content" class="main-content">
+        <!-- === TRACKS MANAGEMENT VIEW === -->
+        <section id="tracksView" style="display: block;">
+            <header style="margin-bottom: 2rem;padding: 5px;background-color: rgb(255 255 255 / 5%);" class="flex items-center">
+                <h1 class="text-3xl font-extrabold" style="color: #f48296;">Bài hát Đã Nghe</h1>
+            </header>
+
+            <!-- Thao tác hàng loạt & Tìm kiếm -->
+            <div class="p-6 rounded-xl shadow-lg mb-6 flex justify-between items-center" style="background-color: white;">
+               
+                <div class="flex items-center ">
+                    <div class="search-container">
+                        <input type="text" id="searchTrack" placeholder="Tìm kiếm bài hát...">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng danh sách bài hát -->
+            <div class="table-container">
+                <table>
+                    <thead class="bg-gray-50">
+                        <tr>
+                            
+                            <th>
+                                Ảnh
+                            </th>
+                            <th data-sort-by="title">
+                                Tên Bài Hát
+                                <span id="sort-title" class="sort-icon opacity-50"><i data-lucide="arrow-down-up"></i></span>
+                            </th>
+                            <th data-sort-by="artist">
+                                Ca Sĩ
+                                <span id="sort-artist" class="sort-icon opacity-50"><i data-lucide="arrow-down-up"></i></span>
+                            </th>
+                            <th>
+                                Năm phát hành - Thể loại 
+                            </th>
+                            <th style="text-align: center;">
+                                Thông tin
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackList">
+                       
+                        {{#each user.watched}}
+                            
+                            <tr data-id="{{this._id}}" class="track-row">
+                               
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem;">
+                                     <a href="/?videoId={{this.fileUrl}}" class="block no-underline hover:underline"><img src="{{this.image}}" onerror="this.onerror=null;this.src='https://placehold.co/50x50/374151/ffffff?text=IMG';" style="height: 2.5rem; width: 2.5rem; border-radius: 0.5rem; object-fit: cover;" alt="Ảnh bìa"></a>
+                                    
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; font-weight: 500; color: #111827;">
+                                     <a href="/?videoId={{this.fileUrl}}" class="block no-underline hover:underline">{{this.title}}</a>
+                                  
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; color: #4b5563;">
+                                    {{this.artist}}
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; color: #4b5563;">
+                                    {{this.year}} - {{this.genre}}
+                                </td>
+                                <td style="white-space: nowrap; padding: 1rem 1.5rem; text-align: center;">
+                                    {{this.views}} lượt nghe - {{this.likes}} lượt thích
+                                </td>
+                                  
+                            </tr>
+                            
+                        {{/each}}   
+                       
+                    </tbody>
+                </table>
+                
+            </div>
+        </section>
+    </main>
+
+    <div id="g-toast-box-container"></div>
+    </div>
+
+
+

@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/admin.css">
+<script src="/js/settings.js" defer></script>
+    <!-- Nội dung chính (Main Content) -->
+    <main id="content" class="main-content">
+        <!-- === SETTINGS VIEW === -->
+        <section id="settingsView" >
+            <header style="margin-bottom: 2rem;" class="flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold">Cài đặt Hệ thống</h1>
+            </header>
+            
+            <div class="dashboard-panel" style="max-width: 600px;">
+                <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">Giao diện</h2>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--color-border);">
+                    <div>
+                        <h3 style="font-size: 1rem; font-weight: 600; margin: 0;">Chế độ Tối (Dark Mode)</h3>
+                        <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Thay đổi giao diện sang tông màu tối thân thiện với mắt.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+                    <div>
+                        <h3 style="font-size: 1rem; font-weight: 600; margin: 0;"> Dữ liệu Đã Xóa</h3>
+                        <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Quản lý dữ liệu đã xóa trong hệ thống.</p>
+                    </div>
+                    <a href="/admin/trashManage" id="clearDataBtn" class="btn-normal" style="border-radius: 0.5rem; padding: 0.5rem 1rem;text-decoration: none;">
+                        <i class="fa-solid fa-trash" style="width: 1rem; height: 1rem; margin-right: 0.25rem;"></i>
+                        Truy cập dữ liệu đã xóa
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+    

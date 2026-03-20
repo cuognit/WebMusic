@@ -1,0 +1,261 @@
+/* --- Container Chính --- */
+        #auth-layout {
+            width: 100%;
+            height: 100vh;
+            background-color: #7b7b7b76; /* Màu nền xám nhạt */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            
+
+    
+        }
+        .auth-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            min-height: 520px;
+            margin: auto;
+            display: none;
+            
+        }
+
+        /* --- Cấu trúc Form --- */
+        .auth-form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.7s ease-in-out;
+        }
+
+        .auth-sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2; /* Form đăng nhập mặc định ở trên */
+        }
+
+        .auth-sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0; /* Form đăng ký mặc định bị ẩn */
+            z-index: 1;
+        }
+
+        form {
+            background-color: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .auth-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 2rem; /* Kích thước tương đương h1 */
+        }
+
+        .auth-subtitle {
+            font-size: 0.875rem; /* 14px */
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        a.auth-forgot-password {
+            font-size: 0.875rem;
+            color: #777;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+        a.auth-forgot-password:hover {
+            color: #ec4899; /* Màu hồng */
+        }
+
+        /* --- Ô Input (Rõ ràng hơn) --- */
+        .auth-form-input {
+            background-color: #f9f9f9;
+            border: 2px solid #eee; /* Viền rõ ràng */
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .auth-form-input:focus {
+            border-color: #ec4899; /* Viền màu hồng khi focus */
+            box-shadow: 0 0 8px rgba(236, 72, 153, 0.3); /* Đổ bóng nhẹ khi focus */
+        }
+
+        /* --- Nút Bấm (Rõ ràng hơn) --- */
+        .auth-form-button {
+            background-color: #ec4899; /* Màu hồng */
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 25px; /* Bo tròn */
+            padding: 14px 45px;
+            cursor: pointer;
+            transition: transform 0.1s ease-in, background-color 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4); /* Đổ bóng cho nút */
+        }
+
+        .auth-form-button:active {
+            transform: scale(0.95); /* Hiệu ứng nhấn xuống */
+        }
+        
+        .auth-form-button:hover {
+             background-color: #d83785; /* Đậm hơn khi hover */
+        }
+
+        /* Nút "ghost" cho overlay */
+        .auth-ghost-button {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            /* Các thuộc tính khác tương tự .form-button */
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 25px;
+            padding: 14px 45px;
+            cursor: pointer;
+            transition: transform 0.1s ease-in, background-color 0.3s, color 0.3s;
+            box-shadow: none; /* Không cần bóng */
+        }
+        
+        .auth-ghost-button:active {
+            transform: scale(0.95);
+        }
+
+        .auth-ghost-button:hover {
+            background-color: #ffffff;
+            color: #ec4899; /* Chuyển màu chữ thành hồng */
+        }
+
+
+        /* --- Lớp Overlay --- */
+        .auth-overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.7s ease-in-out;
+            z-index: 100;
+        }
+
+        .auth-overlay {
+            /* Nền gradient hồng */
+            background: #ec4899;
+            background: linear-gradient(to right, #f472b6, #e13a8a);
+            color: #ffffff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .auth-overlay-panel {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            height: 100%;
+            width: 50%;
+            text-align: center;
+            transform: translateX(0);
+            transition: transform 0.7s ease-in-out;
+        }
+        
+        .auth-overlay-panel .auth-title {
+            color: #ffffff;
+        }
+        
+        .auth-overlay-panel p {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .auth-overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        /* --- Animation Kích Hoạt --- */
+        
+        /* 1. Di chuyển form Đăng nhập */
+        .auth-container.auth-right-panel-active .auth-sign-in-container {
+            transform: translateX(100%);
+        }
+
+        /* 2. Di chuyển form Đăng ký */
+        .auth-container.auth-right-panel-active .auth-sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: auth-show 0.7s;
+        }
+
+        /* 3. Di chuyển container overlay */
+        .auth-container.auth-right-panel-active .auth-overlay-container {
+            transform: translateX(-100%);
+        }
+
+        /* 4. Di chuyển nền overlay */
+        .auth-container.auth-right-panel-active .auth-overlay {
+            transform: translateX(50%);
+        }
+
+        /* 5. Hiệu ứng text overlay */
+        .auth-container.auth-right-panel-active .auth-overlay-left {
+            transform: translateX(0);
+        }
+
+        .auth-container.auth-right-panel-active .auth-overlay-right {
+            transform: translateX(20%);
+        }
+        
+        /* Animation cho form hiện lên */
+        @keyframes auth-show {
+            0%, 49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }

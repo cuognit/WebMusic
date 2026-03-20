@@ -1,0 +1,49 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "web music",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently  \"nodemon --inspect src/index.js\"",
+    "watch": "sass --no-source-map --watch src/resources/scss:src/public/css",
+    "beauty": "prettier --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,css,scss,html}'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
+  },
+  
+  "type": "commonjs",
+
+  "keywords": [
+    "web",
+    "music"
+  ],
+  "author": "cuongit",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "bullmq": "^5.61.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^5.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.18.1",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-slug-updater": "^3.3.0",
+    "nodemailer": "^7.0.9",
+    "redis": "^5.8.3",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "sass": "^1.92.1"
+  }
+}
+

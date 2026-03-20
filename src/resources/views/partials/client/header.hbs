@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/css/login_register.css">
+<header>
+    <div class="header-content">
+        <div class="logo-container">
+            <!-- SỬA: Thay <i> bằng <svg> -->
+                   <a class="logo-container" href="/"><svg class="icon icon-lg" style="color: var(--pink-600);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <span class="nav-text">NMusiC</span></a>
+                </div>
+                    
+                    <div class="search-container">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ..." class="search-input">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon icon-sm search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    {{#if user}}
+                    <div class="action">
+                        <!-- Avatar kích hoạt menu -->
+                        <div class="profile">
+                            {{user.avatar}}
+                            <!-- Sử dụng ảnh mẫu từ placeholder -->
+                            {{#if user.avatar}}
+                            <img src={{user.avatar}} alt="User Avatar">
+                            {{else}}
+                            <img src="https://i.pinimg.com/1200x/06/9b/35/069b3568844a729fbde7ffd76290d4e7.jpg" alt="User Avatar">
+                            {{/if}}
+                            {{!-- <img src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg" alt="User Avatar"> --}}
+                        </div>
+
+                        <!-- Nội dung Menu -->
+                        <div class="menu">
+                            <div style="display: flex;align-items: center;justify-content: space-around;">
+                                <div class="profile" style="width: 50px;height:50px;">
+                                    <!-- Sử dụng ảnh mẫu từ placeholder -->
+                                    {{#if user.avatar}}
+                                    <img src={{user.avatar}} alt="User Avatar">
+                                    {{else}}
+                                    <img src="https://i.pinimg.com/1200x/06/9b/35/069b3568844a729fbde7ffd76290d4e7.jpg" alt="User Avatar">
+                                    {{/if}}
+                                </div>
+                                <div><h3>{{user.name}}<br><span>{{user.email}}</span></h3>
+                                </div>
+                                
+                            </div>
+                            
+                            <ul>
+                                {{#if (eq user.role 'admin')}}
+                                <li>
+                                    <ion-icon style="color: #0e29f8;" name="shield-checkmark-outline"></ion-icon>
+                                    <a style="color: #4406e0;" href="/admin/dashboard" target="_blank" rel="noopener noreferrer">Trang quản trị viên</a>
+                                </li>
+                                {{/if}}
+                                
+                                <li>
+                                    <ion-icon name="person-outline"></ion-icon>
+                                    <a href="/user/profile">Hồ sơ của tôi</a>
+                                </li>
+                                
+                                <li>
+                                    <ion-icon name="list-outline"></ion-icon>
+                                    <a href="/user/library">Thư viện</a>
+                                </li>
+                                <li>
+                                    <ion-icon name="heart-outline"></ion-icon>
+                                    <a href="/user/favorites">Yêu thích</a>
+                                </li>
+                                <li>
+                                    <ion-icon name="time-outline"></ion-icon>
+                                    <a href="/user/history">Đã nghe</a>
+                                </li>
+                                <li>
+
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                    <a href="/user/settings">Cài đặt</a>
+                                </li>
+                                <li>
+                                    <ion-icon name="help-circle-outline"></ion-icon>
+                                    <a href="/user/help">Trợ giúp & Hỗ trợ</a>
+                                </li>
+                                <li class="logoutBtn">
+                                    <ion-icon name="log-out-outline"></ion-icon>
+                                    <a class="logoutBtn" style="color: #ff5d94; cursor: pointer;" href="#">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {{else}}
+                    <!-- Nút Đăng nhập -->
+                    <button class="login-button" id="login-btn">
+                        Đăng nhập
+                    </button>
+                    {{/if}}
+                </div>
+        </header>
+        <script>
+            // Xử lý sự kiện nút Đăng nhập
+            {{!-- document.getElementById('login-btn').addEventListener('click', function() {
+                window.location.href = '/login'; // Chuyển hướng đến trang đăng nhập
+            }); --}}
+            
+           
+        </script>
+       

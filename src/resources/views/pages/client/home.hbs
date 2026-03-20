@@ -1,0 +1,457 @@
+<link rel="stylesheet" href="/css/login_register.css">
+<link rel="stylesheet" href="/css/app.css">
+<!-- ===== Khu vực chính (Header + Content + Player) ===== -->
+     
+            {{!-- // ===== Form Đăng Nhập & Đăng Ký ===== --}}
+            <div id="auth-layout">
+            <div class="auth-container" id="container">
+
+        <!-- Form Đăng Ký (Bên phải) -->
+        <div class="auth-form-container auth-sign-up-container">
+            <form action="#" id="register-form">
+                <div class="auth-title">Tạo tài khoản</div>
+                <p class="auth-subtitle">sử dụng email của bạn để đăng ký</p>
+                <input type="text" placeholder="Tên" class="auth-form-input" name="name" id="name"  required/>
+                <input type="email" placeholder="Email" class="auth-form-input" name="email" id="email" required/>
+                <input type="password" placeholder="Mật khẩu" class="auth-form-input" name="password" id="password" required/>
+                <button class="auth-form-button" id="registerBtn">Đăng Ký</button>
+            </form>
+        </div>
+
+        <!-- Form Đăng Nhập (Bên trái) -->
+        <div class="auth-form-container auth-sign-in-container">
+            <form action="#" id="login-form">
+                <div class="auth-title">Đăng Nhập</div>
+                <p class="auth-subtitle">sử dụng tài khoản của bạn</p>
+                <input type="email" placeholder="Email" class="auth-form-input" name="email" id="email2" required/>
+                <input type="password" placeholder="Mật khẩu" class="auth-form-input" name="password" id="password2" required/>
+                <a href="#" class="auth-forgot-password">Quên mật khẩu?</a>
+                <button class="auth-form-button" id="loginBtn">Đăng Nhập</button>
+            </form>
+        </div>
+
+        <!-- Container Lớp Phủ (Overlay) -->
+        <div class="auth-overlay-container">
+            <div class="auth-overlay">
+                
+                <!-- Panel bên trái (hiện khi form Đăng ký active) -->
+                <div class="auth-overlay-panel auth-overlay-left">
+                    <div class="auth-title">Chào mừng trở lại!</div>
+                    <p>
+                        Đã có tài khoản? Đăng nhập ngay để tiếp tục nhé.
+                    </p>
+                    <button class="auth-ghost-button" id="signIn">Đăng Nhập</button>
+                </div>
+
+                <!-- Panel bên phải (hiện khi form Đăng nhập active - Mặc định) -->
+                <div class="auth-overlay-panel auth-overlay-right">
+                    <div class="auth-title">Xin chào, bạn!</div>
+                    <p>
+                        Bạn chưa có tài khoản? Hãy đăng ký để bắt đầu hành trình mới.
+                    </p>
+                    <button class="auth-ghost-button" id="signUp">Đăng Ký</button>
+                </div>
+                
+            </div>
+        </div>
+
+        </div>
+        </div>
+        <div id="main-container">
+
+           <!-- ===== Sidebar ===== -->
+        <!-- SỬA: Đã xóa hết class Tailwind, chỉ giữ ID và class tùy chỉnh -->
+        <nav id="sidebar" class="sidebar-expanded">
+
+            <div class="sidebar-nav-list">
+                <!-- Trang chủ -->
+                <a href="/" class="nav-item active" title="Trang chủ">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="nav-text">Trang chủ</span>
+                </a>
+
+                <!-- Thư viện -->
+                <a href="/user/library" class="nav-item" title="Thư viện">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m16 6 4 14"/>
+                        <path d="M12 6v14"/>
+                        <path d="M8 8v12"/>
+                        <path d="M4 4v16"/>
+                    </svg>
+                    <span class="nav-text">Thư viện</span>
+                </a>
+
+                <!-- Thêm DS Phát -->
+                <a href="#" class="nav-item" title="Thêm danh sách phát">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span class="nav-text">Thêm danh sách phát</span>
+                </a>
+
+                <hr>
+
+                <!-- Yêu thích -->
+                <a href="user/favorites" class="nav-item" title="Yêu thích">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="nav-text">Yêu thích</span>
+                </a>
+
+                <!-- Đã nghe -->
+                <a href="/user/history" class="nav-item" title="Đã nghe">
+                    <!-- SỬA: Thay <i> bằng <svg> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12A9 9 0 1 0 12 3v9"></path>
+                        <path d="M12 8v4l4 2"></path>
+                    </svg>
+                    <span class="nav-text">Đã nghe</span>
+                </a>
+            </div>
+        </nav>
+        <!-- ===== Kết thúc Sidebar ===== -->
+
+            <!-- ===== Content (Scrollable) ===== -->
+            <main id="content">
+                
+                <!-- Hàng bài hát 1 -->
+                <section class="song-row">
+                    <h2 class="song-row-title">Mới phát hành</h2>
+                    <div class="song-row-scroll">
+                        {{#each songs }}
+                        
+                        <div class="song-card" data-id="{{this._id}}" data-title="{{this.title}}" data-artist="{{this.artist}}" data-img="{{this.image}}" data-youtube-id="{{this.fileUrl}}" data-views="{{this.views}}" data-duration="{{this.duration}}">
+                            <img src="{{this.image}}" class="song-card-image">
+                            <div class="song-card-overlay">
+                            <div class="song-card-overlay">
+                                <button class="song-card-button" title="Yêu thích" >
+                                     {{#if isFavorite}}
+                                    <i title="Yêu thích" data-id="{{this._id}}" class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{else}}
+                                     <i title="Yêu thích" data-id="{{this._id}}" class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{/if}}
+                                </button>
+                                <button class="song-card-button" title="Tùy chọn">
+                                    <!-- SỬA: Thay <i> bằng <svg> -->
+                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="12" cy="5" r="1"></circle>
+                                        <circle cx="12" cy="19" r="1"></circle>
+                                    </svg>
+                                </button>
+                        
+                            </div>
+                            <p style="color: deeppink;font-size: 16px;top: 46px;position: relative;font-family: emoji;">{{this.views}} lượt nghe</p>
+                            </div>
+                            <h3 style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.title}}</h3>
+                            <p style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.artist}}</p>
+                        </div>
+                       
+                        {{/each}}
+                    </div>
+                </section>
+
+                <!-- Hàng bài hát 2 -->
+                <section class="song-row">
+                    <h2 class="song-row-title">Top thịnh hành</h2>
+                    <div class="song-row-scroll">
+                        {{#each songs}}
+                        <div class="song-card" data-id="{{this._id}}" data-title="{{this.title}}" data-artist="{{this.artist}}" data-img="{{this.image}}" data-youtube-id="{{this.fileUrl}}" data-views="{{this.views}}" data-duration="{{this.duration}}">
+                            <img src="{{this.image}}" class="song-card-image">
+                            <div class="song-card-overlay">
+                            <div class="song-card-overlay">
+                                <button class="song-card-button" title="Yêu thích">
+                                   {{#if isFavorite}}
+                                    <i title="Yêu thích" data-id="{{this._id}}" class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{else}}
+                                     <i title="Yêu thích" data-id="{{this._id}}"  class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{/if}}
+                                </button>
+                                <button class="song-card-button" title="Tùy chọn">
+                                    <!-- SỬA: Thay <i> bằng <svg> -->
+                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="12" cy="5" r="1"></circle>
+                                        <circle cx="12" cy="19" r="1"></circle>
+                                    </svg>
+                                </button>
+                        
+                            </div>
+                            <p style="color: deeppink;font-size: 16px;top: 46px;position: relative;font-family: emoji;">{{this.views}} lượt nghe</p>
+                            </div>
+                            <h3 style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.title}}</h3>
+                            <p style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.artist}}</p>
+                        </div>
+                        {{/each}}
+                    </div>
+                </section>
+
+                <!-- Hàng bài hát 3 -->
+                <section class="song-row">
+                    <h2 class="song-row-title">Gợi ý cho bạn</h2>
+                    <div class="song-row-scroll">
+                        {{#each songs}}
+                        {{#if (eq year 2020)}}
+                        <div class="song-card" data-id="{{this._id}}" data-title="{{this.title}}" data-artist="{{this.artist}}" data-img="{{this.image}}" data-youtube-id="{{this.fileUrl}}" data-views="{{this.views}}" data-duration="{{this.duration}}">
+                            <img src="{{this.image}}" class="song-card-image">
+                            <div class="song-card-overlay">
+                            <div class="song-card-overlay">
+                                <button class="song-card-button" title="Yêu thích">
+                                     {{#if isFavorite}}
+                                    <i title="Yêu thích" data-id="{{this._id}}" class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{else}}
+                                     <i title="Yêu thích" data-id="{{this._id}}"  class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{/if}}
+                                </button>
+                                <button class="song-card-button" title="Tùy chọn">
+                                    <!-- SỬA: Thay <i> bằng <svg> -->
+                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="12" cy="5" r="1"></circle>
+                                        <circle cx="12" cy="19" r="1"></circle>
+                                    </svg>
+                                </button>
+                        
+                            </div>
+                            <p style="color: deeppink;font-size: 16px;top: 46px;position: relative;font-family: emoji;">{{this.views}} lượt nghe</p>
+                            </div>
+                            <h3 style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.title}}</h3>
+                            <p style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.artist}}</p>
+                        </div>
+                        {{/if}} 
+                        {{/each}}
+                        
+                    </div>
+                </section>
+
+                <!-- Hàng bài hát 4 -->
+                 <section class="song-row">
+                    <h2 class="song-row-title">Thư giãn cuối ngày</h2>
+                    <div class="song-row-scroll">
+                        {{#each songs}}
+                        {{#if (eq year 2020)}}
+                        {{#if (lt @index 1)}}
+                        <div class="song-card" data-id="{{this._id}}" data-title="{{this.title}}" data-artist="{{this.artist}}" data-img="{{this.image}}" data-youtube-id="{{this.fileUrl}}" data-views="{{this.views}}" data-duration="{{this.duration}}">
+                            <img src="{{this.image}}" class="song-card-image">
+                            <div class="song-card-overlay">
+                            <div class="song-card-overlay">
+                                <button class="song-card-button" title="Yêu thích">
+                                    {{#if isFavorite}}
+                                    <i title="Yêu thích" data-id="{{this._id}}" class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{else}}
+                                     <i title="Yêu thích" data-id="{{this._id}}"  class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{/if}}
+                                </button>
+                                <button class="song-card-button" title="Tùy chọn">
+                                    <!-- SỬA: Thay <i> bằng <svg> -->
+                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="12" cy="5" r="1"></circle>
+                                        <circle cx="12" cy="19" r="1"></circle>
+                                    </svg>
+                                </button>
+                        
+                            </div>
+                            <p style="color: deeppink;font-size: 16px;top: 46px;position: relative;font-family: emoji;">{{this.views}} lượt nghe</p>
+                            </div>
+                            <h3 style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.title}}</h3>
+                            <p style="max-width: 160px;overflow: hidden;text-overflow: ellipsis">{{this.artist}}</p>
+                        </div>
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
+                         
+                    </div>
+                </section>
+
+            </main>
+            <!-- ===== Kết thúc Content ===== -->
+
+            <!-- ===== Giao diện phát nhạc (Player View) - Ẩn ban đầu ===== -->
+            <div id="player-view">
+                <div class="player-view-content">
+                    
+                    <div class="player-video-container">
+                        <div class="player-video-wrapper">
+
+                            <div id="full-youtube-player">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-queue-container">
+                        <div class="player-queue-tabs">
+                            <button>Tiếp theo</button>
+                        </div>
+                        {{#each songs}}
+                       
+                        <div class="player-queue-list">
+                            <div class="player-queue-item" data-fileUrl="{{this.fileUrl}}">
+                                <img src="{{this.image}}" class="queue-item-image">
+                                <div class="queue-item-info" style="display: flex;flex:1;justify-content: space-between;align-items: center;">
+                                    <div><p class="queue-item-title">{{this.title}}</p>
+                                    <p class="queue-item-artist">{{this.artist}}</p>
+                                    </div>
+                                    <div class="song-card-overlay2 ">
+                                    <button class="song-card-button" title="Yêu thích">
+                                        {{#if isFavorite}}
+                                    <i title="Yêu thích" data-id="{{this._id}}"  class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{else}}
+                                     <i title="Yêu thích" data-id="{{this._id}}"  class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                    {{/if}}
+                                    </button>
+                                    <button class="song-card-button" title="Tùy chọn">
+                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <!-- ===== Kết thúc Giao diện phát nhạc ===== -->
+
+
+            <!-- ===== Thanh điều khiển (Control Bar) - (Trước là Mini Player) ===== -->
+            <div id="music-player-mini">
+                
+                <div class="mini-player-grid">
+                    
+                    <div class="player-controls-left">
+                        <button id="mini-skip-back-btn" class="control-button" title="Quay lại">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                                <line x1="5" y1="19" x2="5" y2="5"></line>
+                            </svg>
+                        </button>
+                        <button id="mini-play-btn" class="play-button" title="Phát/Tạm dừng">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg id="mini-play-icon-play" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <svg id="mini-play-icon-pause" class="icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                        </button>
+                        <button id="mini-skip-fwd-btn" class="control-button" title="Tiếp theo">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                <line x1="19" y1="5" x2="19" y2="19"></line>
+                            </svg>
+                        </button>
+                        
+                        <button id="mini-like-btn" class="like-button" title="Thích">
+                           
+                                {{#if user}}
+                                    <p>{{this._id}}</p>
+                                    <i title="Yêu thích"  class="fa-solid fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                {{else}}
+                                     <i title="Yêu thích"  class="fa-regular fa-heart like_icon" style="font-size: 16px;color: red;cursor: pointer;"></i>
+                                {{/if}}
+                           
+
+                          
+                        </button>
+                    </div>
+
+                    <div class="player-controls-center">
+                        <span id="current-time-text" class="time-text right">0:00</span>
+                        <input id="main-progress-bar" type="range" min="0" max="100" value="0">
+                        <span id="duration-time-text" class="time-text left">0:00</span>
+                    </div>
+
+                    <div class="player-controls-right">
+                        
+                        <div class="volume-container">
+                            <button id="mini-volume-btn" class="control-button" title="Âm lượng">
+                                <!-- SỬA: Thay <i> bằng <svg> -->
+                                <svg id="volume-icon" class="icon icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    <!-- Volume 1 path: <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path> -->
+                                    <!-- Volume X path: <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line> -->
+                                </svg>
+                            </button>
+                            <div class="volume-popup">
+                                <input id="volume-slider" type="range" min="0" max="100" value="100">
+                            </div>
+                        </div>
+
+                        <button id="mini-repeat-btn" class="control-button" title="Lặp lại">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="17 1 21 5 17 9"></polyline>
+                                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                                <polyline points="7 23 3 19 7 15"></polyline>
+                                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                            </svg>
+                        </button>
+                        <button id="mini-shuffle-btn" class="control-button" title="Phát ngẫu nhiên">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 3 21 3 21 8"></polyline>
+                                <line x1="4" y1="20" x2="21" y2="3"></line>
+                                <polyline points="16 21 21 21 21 16"></polyline>
+                                <line x1="15" y1="15" x2="21" y2="21"></line>
+                                <line x1="4" y1="4" x2="9" y2="9"></line>
+                            </svg>
+                        </button>
+                        <button id="mini-more-btn" class="control-button" title="Tùy chọn khác">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg class="icon icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="19" cy="12" r="1"></circle>
+                                <circle cx="5" cy="12" r="1"></circle>
+                            </svg>
+                        </button>
+
+                        <div class="divider"></div>
+
+                        <div class="mini-song-info">
+                            <img id="mini-img" src="https://placehold.co/50x50/fecdd3/db2777?text=NM">
+                            <div>
+                                <h4 id="mini-title">Chưa phát nhạc</h4>
+                                <p id="mini-artist">Chọn một bài hát</p>
+                            </div>
+                        </div>
+                        
+                        <button id="toggle-view-btn" class="toggle-view-button" title="Phóng to/Thu nhỏ">
+                            <!-- SỬA: Thay <i> bằng <svg> -->
+                            <svg id="toggle-view-icon-up" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="18 15 12 9 6 15"></polyline>
+                            </svg>
+                            <svg id="toggle-view-icon-down" class="icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ===== Kết thúc Thanh điều khiển ===== -->
+
+        </div>
+        <!-- ===== Kết thúc Khu vực chính ===== -->
+         <div id="g-toast-box-container"></div>
+
+        
+
+    <script src="/js/home.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

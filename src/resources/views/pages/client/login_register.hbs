@@ -1,0 +1,72 @@
+<!-- Container Chính -->
+    <div class="auth-container" id="container">
+
+        <!-- Form Đăng Ký (Bên phải) -->
+        <div class="auth-form-container auth-sign-up-container">
+            <form action="#">
+                <div class="auth-title">Tạo tài khoản</div>
+                <p class="auth-subtitle">sử dụng email của bạn để đăng ký</p>
+                <input type="text" placeholder="Tên" class="auth-form-input" />
+                <input type="email" placeholder="Email" class="auth-form-input" />
+                <input type="password" placeholder="Mật khẩu" class="auth-form-input" />
+                <button class="auth-form-button">Đăng Ký</button>
+            </form>
+        </div>
+
+        <!-- Form Đăng Nhập (Bên trái) -->
+        <div class="auth-form-container auth-sign-in-container">
+            <form action="#">
+                <div class="auth-title">Đăng Nhập</div>
+                <p class="auth-subtitle">sử dụng tài khoản của bạn</p>
+                <input type="email" placeholder="Email" class="auth-form-input" />
+                <input type="password" placeholder="Mật khẩu" class="auth-form-input" />
+                <a href="#" class="auth-forgot-password">Quên mật khẩu?</a>
+                <button class="auth-form-button">Đăng Nhập</button>
+            </form>
+        </div>
+
+        <!-- Container Lớp Phủ (Overlay) -->
+        <div class="auth-overlay-container">
+            <div class="auth-overlay">
+                
+                <!-- Panel bên trái (hiện khi form Đăng ký active) -->
+                <div class="auth-overlay-panel auth-overlay-left">
+                    <div class="auth-title">Chào mừng trở lại!</div>
+                    <p>
+                        Đã có tài khoản? Đăng nhập ngay để tiếp tục nhé.
+                    </p>
+                    <button class="auth-ghost-button" id="signIn">Đăng Nhập</button>
+                </div>
+
+                <!-- Panel bên phải (hiện khi form Đăng nhập active - Mặc định) -->
+                <div class="auth-overlay-panel auth-overlay-right">
+                    <div class="auth-title">Xin chào, bạn!</div>
+                    <p>
+                        Bạn chưa có tài khoản? Hãy đăng ký để bắt đầu hành trình mới.
+                    </p>
+                    <button class="auth-ghost-button" id="signUp">Đăng Ký</button>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Lấy các phần tử DOM
+        const signUpButton = document.getElementById('signUp'); // Nút "Đăng Ký" trên overlay
+        const signInButton = document.getElementById('signIn'); // Nút "Đăng Nhập" trên overlay
+        const container = document.getElementById('container');   // Container chính
+
+        // Thêm sự kiện click cho nút "Đăng Ký"
+        // Khi click, thêm class 'auth-right-panel-active' vào container
+        signUpButton.addEventListener('click', () => {
+            container.classList.add('auth-right-panel-active');
+        });
+
+        // Thêm sự kiện click cho nút "Đăng Nhập"
+        // Khi click, xóa class 'auth-right-panel-active' khỏi container
+        signInButton.addEventListener('click', () => {
+            container.classList.remove('auth-right-panel-active');
+        });
+    </script>

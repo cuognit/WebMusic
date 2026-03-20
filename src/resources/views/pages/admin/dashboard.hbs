@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/css/admin.css">
+    <!-- Nội dung chính (Main Content) -->
+    <main id="content" class="main-content">
+        
+        <!-- === DASHBOARD VIEW === -->
+        <section id="dashboardView" >
+            <header style="margin-bottom: 2rem;" class="flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold">Dashboard Tổng Quan</h1>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <!-- Stat Card 1: Tổng số lượt xem -->
+                <div class="stat-card">
+                    <div class="stat-icon bg-indigo">
+                        <i class="fa-regular fa-eye" style="font-size: 26px; position: relative; left: -3px; " ></i>
+                    </div>
+                    <div>
+                        <div id="totalViews" class="stat-value">{{totalViews}}</div>
+                        <div class="stat-label">Tổng số lượt xem</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2: Tổng số lượt thích -->
+                <div class="stat-card">
+                    <div class="stat-icon bg-green">
+                        <i class="fa-regular fa-heart" style="font-size: 26px;position: relative; left: -1px;"></i>
+                    </div>
+                    <div>
+                        <div id="totalLikes" class="stat-value">{{totalLikes}}</div>
+                        <div class="stat-label">Tổng số lượt thích (Mock)</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3: Tổng số bài hát -->
+                <div class="stat-card">
+                    <div class="stat-icon bg-yellow">
+                        <i class="fa-solid fa-music" style="font-size: 26px;position: relative;left: -1px;"></i>
+                    </div>
+                    <div>
+                        <div id="totalTracksCount" class="stat-value">{{totalTracksCount}}</div>
+                        <div class="stat-label">Tổng số bài hát</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts/Visual Panels -->
+            <div class="dashboard-content-grid">
+                <!-- Panel 1: Biểu đồ lượt xem theo thời gian (Mock) -->
+                <div class="dashboard-panel" style="min-height: 400px;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Biểu đồ Lượt xem Bài hát</h3>
+                    <p style="color: #6b7280; font-style: italic; padding: 2rem; text-align: center;">[Vẽ biểu đồ Bar/Line Chart về lượt xem ở đây]</p>
+                </div>
+
+                <!-- Panel 2: Bài hát có lượt xem cao nhất -->
+                <div class="dashboard-panel">
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Top 5 Bài hát Hot nhất</h3>
+                    <ul id="topTracksList" style="list-style: none; padding: 0;">
+                        {{#each topTracks}}
+                          <li style="color: #6b7280; font-style: italic; padding: 1rem 0;">{{title}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+</main>
+    
+<script src="/js/dashboard.js" defer></script>
